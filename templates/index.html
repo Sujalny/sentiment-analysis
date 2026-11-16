@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sentiment Studio</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+  <main>
+    <header><a href="/" class="brand"><span class="mark">S</span> Sentiment Studio</a><span class="badge">LOCAL ML MODEL</span></header>
+    <section class="intro"><p class="eyebrow">WORDS IN. INSIGHT OUT.</p><h1>Find the feeling<br>behind the words.</h1><p>Explore the tone of a review, a message, or an idea with machine learning.</p></section>
+    <div class="workspace">
+      <section class="card">
+        <form id="analyze-form">
+          <div class="section-top"><label for="text">Your text</label><span>English · up to 5,000 characters</span></div>
+          <textarea id="text" name="text" maxlength="5000" required placeholder="The service was wonderful and I loved every moment…"></textarea>
+          <div class="text-bottom"><span id="count">0 / 5,000</span><button type="button" id="clear" class="quiet">Clear</button></div>
+          <p class="sample-label">TRY AN EXAMPLE</p>
+          <div class="examples"><button type="button" data-example="I love this product it is wonderful">Positive</button><button type="button" data-example="Poor quality and a complete waste of money">Negative</button><button type="button" data-example="The package arrived on Tuesday">Neutral</button></div>
+          <button class="primary" id="submit" type="submit">Analyze sentiment <span>↗</span></button>
+        </form>
+        <p id="error" role="alert" hidden></p>
+      </section>
+      <section class="card result" aria-live="polite" aria-busy="false" id="result">
+        <p class="eyebrow">THE ANALYSIS</p><div id="empty"><span class="orb">✦</span><h2>A little perspective awaits.</h2><p>Add some text and analyze it to see its predicted sentiment.</p></div>
+        <div id="prediction" hidden><p class="result-label">Predicted sentiment</p><h2 id="sentiment"></h2><div id="scores"></div><p class="note">Scores are model estimates, not calibrated certainty.</p></div>
+      </section>
+    </div>
+    <footer><span>TF-IDF + Logistic Regression · Saved with Joblib</span><span>Your text stays on this server.</span></footer>
+    <p class="disclaimer">Trained on 45,615 TweetEval examples. Held-out tweet accuracy: 59.2% on 12,284 examples. This remains an experimental model: sarcasm, mixed sentiment, unfamiliar topics, and other languages may produce incorrect results. “Uncertain” marks a top score below 60% or a lead below 20 percentage points; it is a heuristic, not a calibrated reliability guarantee.</p>
+  </main>
+</body>
+</html>
